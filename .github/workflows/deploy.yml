@@ -2,28 +2,29 @@ name: CI-CD
 
 on:
 push:
-branches: [ main ]
+branches:
+- main
 
 jobs:
 build:
 runs-on: ubuntu-latest
 
-```
+
 steps:
-- name: Checkout code
-  uses: actions/checkout@v4
+  - name: Checkout code
+    uses: actions/checkout@v4
 
-- name: Set up Python
-  uses: actions/setup-python@v5
-  with:
-    python-version: '3.11'
+  - name: Set up Python
+    uses: actions/setup-python@v5
+    with:
+      python-version: '3.11'
 
-- name: Install dependencies
-  run: pip install -r requirements.txt
+  - name: Install dependencies
+    run: pip install -r requirements.txt
 
-- name: Run app syntax check
-  run: python -m py_compile app.py
+  - name: Run app syntax check
+    run: python -m py_compile app.py
 
-- name: Build Docker image
-  run: docker build -t cloud-demo .
-```
+  - name: Build Docker image
+    run: docker build -t cloud-demo .
+
